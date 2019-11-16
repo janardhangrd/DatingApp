@@ -1,0 +1,8 @@
+settings.json to hide file that showup in project solution browser.
+2019-10-20 2.5 - 2.
+	code 1st approach:
+		Tell EF about our Class(Model) 
+			=> mention it in Constructor of DataContext Class and pass it to base(DbContext) class contructor
+
+		Tell our App about this
+			=> Startup.cs :: 
