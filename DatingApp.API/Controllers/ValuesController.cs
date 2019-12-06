@@ -16,6 +16,9 @@ namespace DatingApp.API.Controllers
     public class ValuesController : ControllerBase
     {
         private readonly DataContext _context;
+
+        // public DataContext Context => _context; // 1 statement to do it all
+
         public ValuesController(DataContext context)
         {
          _context = context;   
@@ -23,6 +26,7 @@ namespace DatingApp.API.Controllers
  
 
         // GET api/values
+           [AllowAnonymous]
         [HttpGet]
         //public ActionResult<IEnumerable<string>> Get()
         public async Task<IActionResult> GetValues()
