@@ -49,4 +49,16 @@ Section 4: Angular Services, ngIf & below......
   		     }
 
 
+Section 5: Error Handling
+	5.0) 
+	5.1) Try catch to handle errors
+	5.2) Global Error Handling in .net Core 3.0
+		5.2.0) 
+
+
+Section 6: Adding 3rd party components
+	6.1:: Alertifyjs:: toast msg's :: npm install alterfityjs
+	6.2:: Angular JWT:: improve our "token" security by validating it.
+	NGX bootstrap:: 
+	Bootswatch:: theme
 
