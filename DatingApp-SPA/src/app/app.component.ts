@@ -9,7 +9,7 @@ import { User } from './_models/User';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
- jwtHelper = new JwtHelperService();
+  jwtHelper = new JwtHelperService();
 
   constructor(private authService: AuthService) {}
 
