@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from 'src/app/_models/User';
 import { UserService } from 'src/app/_services/User.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
+import { TabsetComponent } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-member-detail',
@@ -11,15 +12,22 @@ import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gal
   styleUrls: ['./member-detail.component.css']
 })
 export class MemberDetailComponent implements OnInit {
+  @ViewChild('memberTabs', {static: true}) memberTabs: TabsetComponent;
   user: User;
   galleryOptions: NgxGalleryOptions[];
-    galleryImages: NgxGalleryImage[];
+  galleryImages: NgxGalleryImage[];
 
   constructor(private userService: UserService, private alertify: AlertifyService, private route: ActivatedRoute) { }
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.user = data['user'];
     });
+
+    this.route.queryParams.subscribe(params => {
+      const selectedTab = params['tab'];
+      this.memberTabs.tabs[selectedTab > 0 ? selectedTab : 0].active = true;
+    });
+
     this.galleryOptions = [
       {
         width: '500px',
@@ -46,11 +54,14 @@ export class MemberDetailComponent implements OnInit {
     return imageUrls;
   }
 
+  selectTab(tabId: number) {
+    this.memberTabs.tabs[tabId].active = true;
+  }
+
   // no longer required because adding it into resolver and subcribing  it in app.module.ts and routes.ts
   // ngOnInit() {
   //   this.loadUser();
   // }
-
   // // memebers/3
   // loadUser() {
   //   this.userService.getUser(+this.route.snapshot.params['id']).subscribe((user: User) => {
